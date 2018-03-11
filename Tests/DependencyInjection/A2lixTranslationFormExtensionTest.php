@@ -11,26 +11,11 @@
 
 namespace A2lix\TranslationFormBundle\Tests\DependencyInjection;
 
-use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use A2lix\TranslationFormBundle\DependencyInjection\A2lixTranslationFormExtension;
+use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 
 class A2lixTranslationFormExtensionTest extends AbstractExtensionTestCase
 {
-    protected function getContainerExtensions()
-    {
-        return array(
-            new A2lixTranslationFormExtension()
-        );
-    }
-
-    protected function getMinimalConfiguration()
-    {
-        return array(
-            'locales' => array('es', 'en'),
-            'default_locale' => 'es',
-        );
-    }
-
     public function testAfterLoadingParametersAreSet()
     {
         $this->load();
@@ -43,5 +28,20 @@ class A2lixTranslationFormExtensionTest extends AbstractExtensionTestCase
             'A2lixTranslationFormBundle::default.html.twig'
         );
         $this->assertContainerBuilderHasAlias('a2lix_translation_form.manager_registry', 'doctrine');
+    }
+
+    protected function getContainerExtensions()
+    {
+        return array(
+            new A2lixTranslationFormExtension(),
+        );
+    }
+
+    protected function getMinimalConfiguration()
+    {
+        return array(
+            'locales' => array('es', 'en'),
+            'default_locale' => 'es',
+        );
     }
 }
