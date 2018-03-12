@@ -55,7 +55,6 @@ abstract class TranslationsTypeTestCase extends TypeTestCase
             $schemaTool->dropSchema($classes);
             $schemaTool->createSchema($classes);
         } catch (\Exception $e) {
-
         }
 
         parent::setUp();
